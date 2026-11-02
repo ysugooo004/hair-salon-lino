@@ -1,0 +1,65 @@
+// ==========================================================
+// Foundation / base
+// サイト全体の基本スタイル（文字・背景・リンク・フォーカス）
+// ==========================================================
+@use "settings" as *;
+
+html {
+  // 固定ヘッダーの高さ分、ページ内リンクの着地点をずらす
+  scroll-padding-top: $header-height-sp + 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+
+  @include mq(lg) {
+    scroll-padding-top: $header-height-pc + 16px;
+  }
+
+  @include reduced-motion {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: $color-base;
+  color: $color-text;
+  font-family: $font-gothic;
+  font-size: fluid(15px, 16px);
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-break: strict;
+
+  // ドロワー表示中は背景をスクロールさせない
+  &.is-locked {
+    overflow: hidden;
+  }
+}
+
+a {
+  color: $color-accent-text;
+  transition: color $duration $ease;
+
+  @include hover {
+    color: $color-accent-hover;
+  }
+}
+
+// キーボード操作時に「今どこを選んでいるか」を必ず見せる
+:focus-visible {
+  outline: 2px solid $color-accent;
+  outline-offset: 3px;
+}
+
+// 動きを減らす設定の人には、すべてのアニメーションを止める
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,156 @@
+// ==========================================================
+// Component / button
+// <a> と <button> のどちらにも使えるボタン
+//   .c-button              … くすみローズの塗りボタン（基本）
+//   .c-button--outline     … 枠線ボタン
+//   .c-button--light       … 濃い背景の上で使う明るいボタン
+//   .c-button--line        … LINEボタン
+//   .c-button--sm / --lg   … 大きさ違い
+//   .c-button--block       … 横幅いっぱい
+//   .c-button--stack       … 2段（小さい補足文＋ボタン名）
+// ==========================================================
+@use "../../foundation/settings" as *;
+
+.c-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 1px solid $color-accent;
+  border-radius: 999px;
+  background-color: $color-accent;
+  color: $color-white;
+  font-size: rem(15px);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color $duration $ease,
+    border-color $duration $ease,
+    color $duration $ease,
+    transform $duration $ease;
+
+  @include mq(md) {
+    min-height: 56px;
+    padding: 0 36px;
+  }
+
+  @include hover {
+    border-color: $color-accent-hover;
+    background-color: $color-accent-hover;
+    color: $color-white;
+  }
+
+  // 矢印・アイコン
+  &__icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    transition: transform $duration $ease;
+  }
+
+  @include hover {
+    .c-button__icon--arrow {
+      transform: translateX(4px);
+    }
+  }
+
+  // 2段ボタンの上の小さい文字
+  &__sub {
+    display: block;
+    font-size: rem(12px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  &__main {
+    display: block;
+    font-size: rem(15px);
+    font-weight: 700;
+
+    @include mq(md) {
+      font-size: rem(16px);
+    }
+  }
+
+  // ---- 種類 ----
+  &--outline {
+    background-color: transparent;
+    color: $color-accent-text;
+
+    @include hover {
+      border-color: $color-accent;
+      background-color: $color-accent;
+      color: $color-white;
+    }
+  }
+
+  &--light {
+    border-color: $color-base;
+    background-color: $color-base;
+    color: $color-text;
+
+    .c-button__sub {
+      color: $color-text-sub;
+    }
+
+    @include hover {
+      border-color: $color-white;
+      background-color: $color-white;
+      color: $color-text;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--line {
+    border-color: $color-line;
+    background-color: $color-line;
+    color: $color-white;
+
+    @include hover {
+      border-color: $color-line-hover;
+      background-color: $color-line-hover;
+      color: $color-white;
+      transform: translateY(-2px);
+    }
+  }
+
+  // ---- 大きさ・形 ----
+  &--sm {
+    min-height: 48px;
+    padding: 0 22px;
+    font-size: rem(14px);
+
+    @include mq(md) {
+      min-height: 48px;
+      padding: 0 24px;
+    }
+  }
+
+  &--lg {
+    @include mq(md) {
+      min-height: 60px;
+      padding: 0 44px;
+      font-size: rem(16px);
+    }
+  }
+
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+
+  &--stack {
+    flex-direction: column;
+    gap: 0;
+    min-height: 68px;
+
+    @include mq(md) {
+      min-height: 80px;
+    }
+  }
+}

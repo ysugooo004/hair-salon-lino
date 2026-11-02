@@ -1,0 +1,14 @@
+# Mac が自動で作るファイル
+.DS_Store
+
+# VS Code（共有したい設定ファイルだけ残す）
+.vscode/*
+!.vscode/settings.json
+
+# ソースマップ・依存パッケージ・公開用フォルダ（npm run build で作り直せるため）
+*.map
+node_modules/
+dist/
+
+# 作業用の一時フォルダ
+_photos-tmp/

@@ -1,0 +1,37 @@
+# ==========================================================
+# hair salon Lino（/works/lino/ フォルダだけに効く設定）
+# ==========================================================
+
+# 文字コード
+AddDefaultCharset UTF-8
+
+# WebP 画像を正しく扱う
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>
+
+# 架空店舗のため、検索エンジンに載せない（画像なども含めて）
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex"
+</IfModule>
+
+# ファイルを圧縮して送る（表示が速くなる）
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript image/svg+xml
+</IfModule>
+
+# ブラウザに保存（キャッシュ）しておく期間
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 week"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+
+# フォルダの中身一覧を表示させない
+Options -Indexes

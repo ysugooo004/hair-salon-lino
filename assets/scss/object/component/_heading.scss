@@ -1,0 +1,69 @@
+// ==========================================================
+// Component / heading（セクション見出し）
+//   <div class="c-heading">
+//     <p class="c-heading__en">CONCEPT</p>
+//     <h2 class="c-heading__title">見出し</h2>
+//     <p class="c-heading__lead">リード文</p>
+//   </div>
+//   .c-heading--left … 左寄せ
+// ==========================================================
+@use "../../foundation/settings" as *;
+
+.c-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+
+  @include mq(lg) {
+    gap: 14px;
+  }
+
+  &__en {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: $color-text-sub;
+    font-family: $font-en;
+    font-size: fluid(13px, 15px);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.24em;
+
+    &::before,
+    &::after {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background-color: $color-gold;
+
+      @include mq(lg) {
+        width: 40px;
+      }
+    }
+  }
+
+  &__title {
+    font-family: $font-mincho;
+    font-size: fluid(22px, 32px);
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.06em;
+  }
+
+  &__lead {
+    color: $color-text-sub;
+    font-size: fluid(13px, 15px);
+    line-height: 1.8;
+  }
+
+  &--left {
+    align-items: flex-start;
+    text-align: left;
+
+    .c-heading__en::after {
+      content: none;
+    }
+  }
+}

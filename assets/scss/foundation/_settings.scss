@@ -1,0 +1,109 @@
+// ==========================================================
+// Foundation / settings
+// 色・フォント・ブレイクポイントなどの「デザインルール」と、
+// 関数・mixin をまとめたファイルです。
+// 各SCSSの先頭で  @use "../foundation/settings" as *;  と読み込みます。
+// ==========================================================
+@use "sass:math";
+@use "sass:map";
+
+// ----------------------------------------------------------
+// 色（STEP 3 で決めた配色）
+// ----------------------------------------------------------
+$color-base: #faf7f2;          // ベース（アイボリー）
+$color-base-sub: #f1ebe3;      // サブ背景（ベージュ）
+$color-white: #fff;            // カード
+$color-text: #3e3832;          // 文字（ウォームダークブラウン）
+$color-text-sub: #6e655c;      // 文字サブ（グレージュブラウン）
+$color-border: #e3dbd0;        // 線
+$color-border-dark: #d8cbb6;   // 線（濃いめ）
+$color-accent: #a0645b;        // アクセント（くすみローズ）
+$color-accent-hover: #8e564e;  // アクセント：ホバー時
+$color-accent-text: #8e564e;   // ローズの文字色（白背景でも読める濃さ）
+$color-gold: #b89b6a;          // 飾り（ゴールド）※文字には使わない
+$color-gold-text: #8c7043;     // ゴールドの文字用（大きい文字で 3:1 以上を確保）
+$color-green: #7d8b74;         // 飾り（グリーン）※文字には使わない
+$color-dark: #4a413a;          // 濃色背景（予約セクション）
+$color-footer: #3a332d;        // フッター背景
+$color-on-dark: #e8dfd3;       // 濃色背景の上の文字
+$color-on-dark-sub: #c9bdae;   // 濃色背景の上の補足文字
+$color-line: #00813a;          // LINEボタン（白文字で 4.5:1 以上）
+$color-line-hover: #006b30;
+$color-placeholder: #e8dfd3;   // 写真の読み込み前の背景
+
+// ----------------------------------------------------------
+// フォント
+// ----------------------------------------------------------
+$font-mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+$font-gothic: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+$font-en: "Cormorant Garamond", "Times New Roman", serif;
+
+// ----------------------------------------------------------
+// ブレイクポイント（スマホを基準に、広い画面へ上書きしていく）
+//   md : 768px〜  タブレット
+//   lg : 1024px〜 PC
+//   xl : 1280px〜 PCナビを横並び表示
+// ----------------------------------------------------------
+$breakpoints: (
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
+// ----------------------------------------------------------
+// そのほか
+// ----------------------------------------------------------
+$header-height-sp: 64px;
+$header-height-pc: 88px;
+$container-width: 1120px;
+$duration: 0.25s;
+$ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+$z-fixed-cta: 90;
+$z-header: 100;
+$z-drawer: 200;
+
+// ==========================================================
+// 関数
+// ==========================================================
+
+// px → rem に変換（16px = 1rem）
+@function rem($px) {
+  @return math.div($px, 16px) * 1rem;
+}
+
+// 画面幅に合わせて、最小値〜最大値の間でなめらかに変わる値を作る
+// 例）font-size: fluid(22px, 32px);  → スマホ22px／PC32px
+@function fluid($min, $max, $vw-min: 375px, $vw-max: 1440px) {
+  $slope: math.div($max - $min, $vw-max - $vw-min);
+  $intercept: $min - $slope * $vw-min;
+  $vw: math.div(math.round($slope * 100 * 1000), 1000);
+  @return clamp(#{rem($min)}, #{rem($intercept)} + #{$vw}vw, #{rem($max)});
+}
+
+// ==========================================================
+// mixin
+// ==========================================================
+
+// メディアクエリ（指定した幅「以上」に適用）
+// 例）@include mq(lg) { ... }
+@mixin mq($key) {
+  @media (min-width: map.get($breakpoints, $key)) {
+    @content;
+  }
+}
+
+// ホバー：マウス操作ができる端末だけに効かせる（スマホでは無効）
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// 動きを減らす設定の人には、アニメーションを止める
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

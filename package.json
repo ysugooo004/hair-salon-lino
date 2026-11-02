@@ -1,0 +1,19 @@
+{
+  "name": "hair-salon-lino",
+  "version": "1.0.0",
+  "description": "架空の美容室 hair salon Lino のポートフォリオ用サイト",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "devDependencies": {
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.49",
+    "sass": "1.80.6",
+    "terser": "5.36.0"
+  }
+}

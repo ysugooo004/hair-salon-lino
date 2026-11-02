@@ -1,0 +1,93 @@
+// ==========================================================
+// Project / お知らせ一覧ページ（news.html）
+// ==========================================================
+@use "../../foundation/settings" as *;
+
+.p-news-page {
+  padding: 28px 0 72px;
+
+  @include mq(lg) {
+    padding: 48px 0 120px;
+  }
+
+  &__filter {
+    padding-bottom: 8px;
+
+    @include mq(lg) {
+      padding-bottom: 16px;
+    }
+  }
+
+  &__list {
+    border-top: 1px solid $color-border;
+  }
+}
+
+.p-news-article {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 0;
+  border-bottom: 1px solid $color-border;
+
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 48px;
+    padding: 48px 0;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @include mq(lg) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__date {
+    color: $color-text-sub;
+    font-family: $font-en;
+    font-size: fluid(16px, 20px);
+    letter-spacing: 0.08em;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include mq(lg) {
+      gap: 16px;
+    }
+  }
+
+  &__title {
+    font-family: $font-mincho;
+    font-size: fluid(18px, 22px);
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  &__photo {
+    max-width: 360px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: rem(14px);
+
+    @include mq(lg) {
+      font-size: rem(15px);
+    }
+  }
+}
+
+.p-news-page__note {
+  margin-top: 24px;
+}

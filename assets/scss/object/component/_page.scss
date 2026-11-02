@@ -1,0 +1,186 @@
+// ==========================================================
+// Component / 下層ページ用の部品
+//   c-page-header / c-breadcrumb / c-anchor-nav / c-modal
+// ==========================================================
+@use "../../foundation/settings" as *;
+
+// ----------------------------------------------------------
+// c-page-header：下層ページのタイトル部分
+// ----------------------------------------------------------
+.c-page-header {
+  padding: 40px 0 36px;
+  background-color: $color-base-sub;
+
+  @include mq(lg) {
+    padding: 72px 0 64px;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__en {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: $color-text-sub;
+    font-family: $font-en;
+    font-size: fluid(13px, 15px);
+    letter-spacing: 0.24em;
+
+    &::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background-color: $color-gold;
+
+      @include mq(lg) {
+        width: 40px;
+      }
+    }
+  }
+
+  &__title {
+    font-family: $font-mincho;
+    font-size: fluid(26px, 38px);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  &__lead {
+    font-size: fluid(14px, 15px);
+  }
+}
+
+// ----------------------------------------------------------
+// c-breadcrumb：パンくずリスト
+// ----------------------------------------------------------
+.c-breadcrumb {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: $color-text-sub;
+    font-size: rem(12px);
+
+    @include mq(lg) {
+      font-size: rem(13px);
+    }
+  }
+
+  &__item:not(:last-child)::after {
+    content: "/";
+    margin-left: 8px;
+  }
+}
+
+// ----------------------------------------------------------
+// c-anchor-nav：ページ内リンク（メニューのカテゴリーへ移動）
+// ----------------------------------------------------------
+.c-anchor-nav {
+  &__list {
+    display: flex;
+    gap: 8px;
+    margin-inline: -20px;
+    padding: 4px 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include mq(md) {
+      flex-wrap: wrap;
+      margin-inline: 0;
+      padding-inline: 0;
+      overflow: visible;
+    }
+
+    li {
+      flex-shrink: 0;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 20px;
+    border: 1px solid $color-border;
+    border-radius: 999px;
+    background-color: $color-white;
+    color: $color-text;
+    font-size: rem(13px);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color $duration $ease, color $duration $ease;
+
+    @include mq(lg) {
+      font-size: rem(14px);
+    }
+
+    @include hover {
+      border-color: $color-accent;
+      color: $color-accent-text;
+    }
+  }
+}
+
+// ----------------------------------------------------------
+// c-modal：「サンプルサイトのため予約できません」のお知らせ
+//   HTML標準の <dialog> 要素を使います
+// ----------------------------------------------------------
+.c-modal {
+  width: calc(100% - 40px);
+  max-width: 440px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background-color: $color-white;
+  color: $color-text;
+
+  &::backdrop {
+    background-color: rgba(#2a2420, 0.55);
+  }
+
+  &[open] {
+    animation: modal-in 0.25s $ease;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 36px 28px 28px;
+    text-align: center;
+  }
+
+  &__title {
+    font-family: $font-mincho;
+    font-size: rem(19px);
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  &__text {
+    font-size: rem(14px);
+    line-height: 1.9;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

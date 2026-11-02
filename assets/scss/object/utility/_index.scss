@@ -1,0 +1,69 @@
+// ==========================================================
+// Utility：どこでも使える補助クラス
+// ==========================================================
+@use "../../foundation/settings" as *;
+
+// 画面には表示せず、読み上げソフトには読ませる
+.u-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// スマホだけで改行する <br class="u-sp-only">
+.u-sp-only {
+  @include mq(md) {
+    display: none !important;
+  }
+}
+
+// タブレット以上だけで表示・改行する
+.u-md-only {
+  display: none !important;
+
+  @include mq(md) {
+    display: inline !important;
+  }
+}
+
+// スクロールでふわっと表示（JavaScriptが動くときだけ隠す）
+.js .u-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s $ease, transform 0.8s $ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @include reduced-motion {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// キーボード操作の人向け「本文へスキップ」リンク（Tabキーで表示）
+.u-skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: $z-drawer + 10;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background-color: $color-text;
+  color: $color-white;
+  font-size: rem(14px);
+  transform: translateY(-200%);
+
+  &:focus {
+    color: $color-white;
+    transform: none;
+  }
+}

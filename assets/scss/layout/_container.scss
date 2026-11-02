@@ -1,0 +1,23 @@
+@use "../foundation/settings" as *;
+
+// ----------------------------------------------------------
+// l-container：中身の最大幅と左右の余白
+// ----------------------------------------------------------
+.l-container {
+  width: 100%;
+  max-width: $container-width + 80px;
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @include mq(md) {
+    padding-inline: 40px;
+  }
+
+  &--narrow {
+    max-width: 880px + 80px;
+  }
+
+  &--wide {
+    max-width: 1344px + 80px;
+  }
+}

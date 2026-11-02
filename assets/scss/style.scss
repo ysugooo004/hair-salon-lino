@@ -1,0 +1,21 @@
+// ==========================================================
+// hair salon Lino - style.scss
+// すべてのSCSSを読み込む親ファイルです。
+// このファイル（または読み込んでいるファイル）を保存すると、
+// assets/css/style.css が作り直されます。
+//
+// 設計：FLOCSS（Foundation / Layout / Object）
+//   Foundation … 変数・mixin・リセット・基本スタイル
+//   Layout     … l-header / l-footer / l-container など大枠
+//   Object
+//     Component … c-button / c-heading など再利用する部品
+//     Project   … p-hero / p-concept などセクション固有
+//     Utility   … u-visually-hidden など補助クラス
+// クラス名の付け方：BEM（block__element--modifier）
+// ==========================================================
+
+@use "foundation";
+@use "layout";
+@use "object/component";
+@use "object/project";
+@use "object/utility";

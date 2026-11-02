@@ -1,0 +1,24 @@
+@use "../foundation/settings" as *;
+
+// ----------------------------------------------------------
+// l-section：セクションの上下余白と背景
+// ----------------------------------------------------------
+.l-section {
+  padding-block: 72px;
+
+  @include mq(lg) {
+    padding-block: 120px;
+  }
+
+  &--sub {
+    background-color: $color-base-sub;
+  }
+
+  &--compact {
+    padding-block: 56px;
+
+    @include mq(lg) {
+      padding-block: 88px;
+    }
+  }
+}

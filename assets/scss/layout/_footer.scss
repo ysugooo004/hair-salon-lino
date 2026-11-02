@@ -1,0 +1,139 @@
+@use "../foundation/settings" as *;
+
+// ----------------------------------------------------------
+// l-footer：フッター
+// ----------------------------------------------------------
+.l-footer {
+  padding: 56px 0 104px; // 下はスマホ固定バーの高さ分あける
+  background-color: $color-footer;
+  color: $color-on-dark;
+
+  @include mq(md) {
+    padding: 72px 0 40px;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include mq(md) {
+      gap: 40px;
+    }
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+
+    @include mq(md) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__logo {
+    color: $color-base;
+    font-family: $font-en;
+    font-size: fluid(26px, 30px);
+    line-height: 1.2;
+    text-decoration: none;
+
+    @include hover {
+      color: $color-white;
+    }
+  }
+
+  &__catch {
+    font-size: rem(13px);
+  }
+
+  &__sns {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__sns-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid $color-text-sub;
+    border-radius: 50%;
+    color: $color-base;
+    transition: background-color $duration $ease;
+
+    @include hover {
+      background-color: #5a5048;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 24px;
+
+    @include mq(md) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    padding-block: 8px;
+    color: $color-on-dark;
+    font-size: rem(14px);
+    text-decoration: none;
+
+    @include hover {
+      color: $color-white;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 20px;
+    border-top: 1px solid #5a5048;
+    color: $color-on-dark-sub;
+    font-size: rem(12px);
+    text-align: center;
+
+    @include mq(md) {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    small {
+      font-size: inherit;
+    }
+  }
+}
+
+// 写真クレジットのリンク
+.l-footer__credit {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  @include hover {
+    color: $color-white;
+  }
+}

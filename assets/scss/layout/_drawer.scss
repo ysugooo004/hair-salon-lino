@@ -1,0 +1,100 @@
+@use "../foundation/settings" as *;
+
+// ----------------------------------------------------------
+// l-drawer：スマホ・タブレット用の全画面メニュー
+// ----------------------------------------------------------
+.l-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: $z-drawer;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: $color-base;
+  // 表示・非表示は HTML の hidden 属性で切り替え、
+  // ここではフェードの動きだけを付ける
+  opacity: 0;
+  transition: opacity $duration $ease;
+
+  &.is-open {
+    opacity: 1;
+  }
+
+  &__head {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    height: $header-height-sp;
+    padding: 0 8px 0 20px;
+    border-bottom: 1px solid $color-border;
+
+    @include mq(lg) {
+      height: $header-height-pc;
+      padding: 0 40px;
+    }
+  }
+
+  &__logo {
+    font-family: $font-en;
+    font-size: fluid(22px, 28px);
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  &__close {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 52px;
+    height: 52px;
+  }
+
+  &__nav {
+    flex: 1;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+    padding: 12px 24px 0;
+  }
+
+  &__link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 52px;
+    padding: 12px 4px;
+    border-bottom: 1px solid $color-border;
+    color: $color-text;
+    font-size: rem(15px);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  &__en {
+    color: $color-text-sub;
+    font-family: $font-en;
+    font-size: rem(13px);
+    letter-spacing: 0.16em;
+  }
+
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+    padding: 24px 24px 32px;
+  }
+
+  &__tel {
+    color: $color-text-sub;
+    font-size: rem(12px);
+    text-align: center;
+  }
+}

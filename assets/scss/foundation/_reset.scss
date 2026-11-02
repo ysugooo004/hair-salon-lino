@@ -1,0 +1,67 @@
+// ==========================================================
+// Foundation / reset
+// ブラウザごとに違う初期スタイルをそろえる、最小限のリセットです。
+// ==========================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+// :where() で詳細度を0にし、各パーツの margin 指定が必ず勝つようにする
+:where(ul[class], ol[class]) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+// <details> の三角マーカーを消す（自作の矢印を使うため）
+summary {
+  list-style: none;
+  cursor: pointer;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}

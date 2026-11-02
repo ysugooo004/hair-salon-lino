@@ -1,0 +1,172 @@
+// ==========================================================
+// Project / メニュー・料金ページ（menu.html）
+// ==========================================================
+@use "../../foundation/settings" as *;
+
+.p-menu-page {
+  padding: 8px 0 72px;
+
+  @include mq(lg) {
+    padding: 24px 0 120px;
+  }
+
+  &__cta {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+
+    @include mq(lg) {
+      padding-top: 56px;
+    }
+
+    .c-button {
+      width: 100%;
+
+      @include mq(md) {
+        width: auto;
+      }
+    }
+  }
+}
+
+// カテゴリー（おすすめ・カット・カラー…）
+.p-menu-cat {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 0;
+  border-top: 1px solid $color-border;
+
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 56px;
+    padding: 56px 0;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__en {
+    color: $color-text-sub;
+    font-family: $font-en;
+    font-size: fluid(12px, 15px);
+    letter-spacing: 0.2em;
+  }
+
+  &__title {
+    font-family: $font-mincho;
+    font-size: fluid(20px, 24px);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  &__courses {
+    display: grid;
+    gap: 16px;
+
+    @include mq(md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+}
+
+// 料金表
+.p-menu-table {
+  border-top: 1px solid $color-border;
+
+  &__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid $color-border;
+
+    @include mq(lg) {
+      gap: 24px;
+      padding: 18px 0;
+    }
+  }
+
+  &__name {
+    font-size: rem(15px);
+    font-weight: 500;
+
+    @include mq(lg) {
+      font-size: rem(16px);
+    }
+  }
+
+  &__note {
+    display: block;
+    margin-top: 2px;
+    color: $color-text-sub;
+    font-size: rem(12px);
+    font-weight: 400;
+
+    @include mq(lg) {
+      font-size: rem(13px);
+    }
+  }
+
+  &__price {
+    font-size: rem(15px);
+    font-weight: 700;
+    white-space: nowrap;
+
+    @include mq(lg) {
+      font-size: rem(17px);
+    }
+  }
+}
+
+// ご予約時の注意
+.p-menu-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 22px;
+  border-radius: 4px;
+  background-color: $color-base-sub;
+  font-size: rem(13px);
+  line-height: 1.9;
+
+  @include mq(lg) {
+    margin-top: 24px;
+    padding: 28px 32px;
+    font-size: rem(14px);
+  }
+
+  &__title {
+    font-size: rem(14px);
+    font-weight: 700;
+
+    @include mq(lg) {
+      font-size: rem(15px);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      padding-left: 1em;
+      text-indent: -1em;
+
+      &::before {
+        content: "・";
+      }
+    }
+  }
+}
